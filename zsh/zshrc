@@ -1,0 +1,28 @@
+# Load zgen
+ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+source "${HOME}/.zgen/zgen.zsh"
+
+# First time setup if zgen init script doesn't exist
+if ! zgen saved; then
+  echo "Creating a zgen init script"
+
+  # prezto options
+  zgen prezto editor key-bindings 'vi'
+  zgen prezto prompt theme 'paradox'
+  zgen prezto '*:*' case-sensitive 'no'
+  zgen prezto '*:*' color 'yes'
+  
+	# prezto and modules
+  zgen prezto
+  zgen prezto archive
+  zgen prezto fasd
+  zgen prezto git
+  zgen prezto homebrew
+  zgen prezto command-not-found
+  zgen prezto utility
+  zgen prezto syntax-highlighting
+  zgen prezto history-substring-search
+  
+  # Generate the init script from the specified plugins
+  zgen save
+fi
