@@ -11,7 +11,6 @@ if ! zgen saved; then
   zgen prezto prompt theme 'paradox'
   zgen prezto '*:*' case-sensitive 'no'
   zgen prezto '*:*' color 'yes'
-  
 	# prezto and modules
   zgen prezto
   zgen prezto archive
@@ -22,7 +21,13 @@ if ! zgen saved; then
   zgen prezto utility
   zgen prezto syntax-highlighting
   zgen prezto history-substring-search
-  
   # Generate the init script from the specified plugins
   zgen save
 fi
+
+# Load any secure components that shouldn't be on my public GitHub account
+if [[ -a ~/.zshrc.secure ]]; then
+  source ${HOME}/.zshrc.secure
+fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
